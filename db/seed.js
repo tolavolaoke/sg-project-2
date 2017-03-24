@@ -3,9 +3,9 @@ console.warn('NOTE! This is where you will seed your database.');
 console.warn('NOTE! Remember to change Game & Player to your primary & secondary model names... and the comments too!');
 
 var mongoose = require('mongoose');
-var Game = require('../models/game-model');
-var Player = require('../models/player-model');
-var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/sg-webdev4-project2';
+var Movie = require('../models/movie-model');
+var Review = require('../models/review-model');
+var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/sg-webdev4-project2'; //DO we change this?
 
 function seedData() {
   console.warn('NOTE! seedData() needs to be implemented');
@@ -19,18 +19,18 @@ function initDb() {
       process.exit(1);
     }
     console.log('connected to', mongoose.connection.name);
-    Game.remove({}, function(err) {
+    Movie.remove({}, function(err) {
       if (err) {
-        console.log('could not drop Game collection: err:', err);
+        console.log('could not drop Movie collection: err:', err);
         process.exit(1);
       }
-      console.log('emptied Game collection');
-      Player.remove({}, function(err) {
+      console.log('emptied Movie collection');
+      Review.remove({}, function(err) {
         if (err) {
-          console.log('could not drop Player collection: err:', err);
+          console.log('could not drop Review collection: err:', err);
           process.exit(1);
         }
-        console.log('emptied Player collection');
+        console.log('emptied Review collection');
         seedData();
       });
     });

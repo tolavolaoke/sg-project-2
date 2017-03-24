@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var app = express();
 var PORT = process.env.PORT || 3000;
-var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/sg-webdev4-project2';
+var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/sg-webdev4-project2'; //Do we change this?
 
 mongoose.connect(MONGODB_URI, function (err) {
   if (err) {
