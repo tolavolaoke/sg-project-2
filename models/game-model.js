@@ -9,12 +9,14 @@ var validationRules = {
     type: String,
     required: true
   },
-  releaseYear: {
-    type: String,
-    required: true
-  }
+  players: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Player'
+    }
+  ]
 };
-var MovieSchema = new Schema(validationRules);
-var Movie = mongoose.model('Movie', MovieSchema);
+var GameSchema = new Schema(validationRules);
+var Game = mongoose.model('Game', GameSchema);
 
-module.exports = Movie;
+module.exports = Game;
