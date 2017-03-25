@@ -1,9 +1,9 @@
-/* global Game, Player */
+/* global Movie, Review */
 
 $(function () {
   console.log('document loaded');
-  console.log('Game:', Game);
-  console.log('Player:', Player);
+  console.log('Movie:', Movie);
+  console.log('Review:', Review);
   // default screen:
-  Game.controller.index();
+  Movie.controller.index();
 });

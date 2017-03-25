@@ -1,13 +1,13 @@
 // define a globally-available object, which stores all functions related to a Game
 // Note: this is a singleton, so we are following the convention of giving a singleton an init capital letter.
-var Game = {
+var Movie = {
   controller: {
     index: function () {
       var $content = $('#content');
 
-      Game.model.index(
+      Movie.model.index(
         function success(data) {
-          var html = Game.view.index(data);
+          var html = Movie.view.index(data);
 
           $content.html(html); // set the HTML in the content div
         },
@@ -37,18 +37,18 @@ var Game = {
   // the following object contains methods related to generating the View - ie, the HTML:
   view: {
     // this maps directly to the `index` route (remember the 7 RESTful routes?)
-    index: function (games) {
+    index: function (movies) {
       var html = `
-        <h2>Games</h2>
+        <h2>Movies</h2>
         <ul>
       `;
 
-      for(var i = 0; i < games.length ; i++) {
+      for(var i = 0; i < movies.length ; i++) {
         // TODO: fill this in properly!
         // For example:
         //   - add buttons to view, edit & delete this game
         //   - on each button, you can add an `onclick` attribute that calls the relevant method on `Game.controller`
-        html += `<li>${games[i].title}</li>`;
+        html += `<li>${movies[i].title}</li>`;
       }
 
       html += `</ul>`;
@@ -78,7 +78,7 @@ var Game = {
       $.ajax({
         method: 'GET',
         dataType: 'json',
-        url: '/games',
+        url: '/movies',
         success: success,
         error: error
       });
@@ -87,7 +87,7 @@ var Game = {
       $.ajax({
         method: 'GET',
         dataType: 'json',
-        url: `/games/${id}`,
+        url: `/movies/${id}`,
         success: success,
         error: error
       });
@@ -96,7 +96,7 @@ var Game = {
       $.ajax({
         method: 'POST',
         dataType: 'json',
-        url: '/games',
+        url: '/movies',
         data: data,
         success: success,
         error: error
@@ -106,7 +106,7 @@ var Game = {
       $.ajax({
         method: 'PUT',
         dataType: 'json',
-        url: `/games/${data.id}`,
+        url: `/movies/${data.id}`,
         data: data,
         success: success,
         error: error
@@ -115,7 +115,7 @@ var Game = {
     destroy: function (id, success, error) {
       $.ajax({
         method: 'DELETE',
-        url: `/games/${id}`,
+        url: `/movies/${id}`,
         success: success,
         error: error
       });

@@ -9,7 +9,7 @@ var validationRules = {
     type: String,
     required: true
   },
-  year: {
+  releaseYear: {
     type: String,
     required: true
   },

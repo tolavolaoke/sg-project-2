@@ -8,10 +8,64 @@ var Review = require('../models/review-model');
 var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/sg-webdev4-project2'; //DO we change this?
 
 function seedData() {
-  console.warn('NOTE! seedData() needs to be implemented');
-  mongoose.connection.close();
+//MOVIE
+  var movie = new Movie();
+  movie.title = 'Get out';
+  movie.genre = 'Thriller';
+  movie.releaseYear = '1987';
+  movie.save(function (err, movieSaved) {
+    var review1 = new Review();
+
+//REVIEWS
+    if (err) {
+      console.log('could not create movie: err:', err);
+      process.exit(1);
+    }
+
+    review1.name = 'hotstuffz';
+    review1.content = 'Not bad';
+    review1.rating = '3';
+    review1.movie = movieSaved._id;
+    review1.save(function (err, review1Saved) {
+      var review2 = new Review();
+
+      if (err) {
+        console.log('could not create review1: err:', err);
+        process.exit(1);
+      }
+      console.log('review1 saved:', review1Saved);
+
+      review2.name = 'hotstuffz';
+      review2.content = 'Not bad';
+      review2.rating = '3';
+      review2.movie = movieSaved._id;
+      review2.save(function (err, review2Saved) {
+        var review2 = new Review();
+        if (err) {
+          console.log('could not create review2: err:', err);
+          process.exit(1);
+        }
+        console.log('review2 saved:', review2Saved);
+
+
+        movieSaved.reviews.push(review1._id);
+        movieSaved.reviews.push(review2._id);
+        movieSaved.save(function (err, movieWithReviewsSaved) {
+          if (err) {
+            console.log('could not create movie: err:', err);
+            process.exit(1);
+          }
+          console.log('movie saved with reviews:', movieWithReviewsSaved);
+          mongoose.connection.close();
+        });
+      });
+    });
+  });
 }
 
+
+
+//----------------------------------------------------------------------------
 function initDb() {
   mongoose.connect(MONGODB_URI, {}, function (err) {
     if (err) {
