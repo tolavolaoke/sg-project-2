@@ -51,9 +51,20 @@ var Movie = {
 
 //--------------------------------------------------------------------------
 
-    show: function () {
-      // TODO: implement
+    show: function (movieId) {
+      Movie.model.show(
+      movieId,
+      function success(data) {
+        var showHtml = Movie.view.show(data);
+
+        $('#content').html(showHtml);
+      },
+      function error(err) {
+        $('#error-message').html(err.responseJSON.message);
+      }
+    );
     },
+
 
 
 //---------------------------------------------------------------------------
@@ -127,7 +138,7 @@ var Movie = {
         //   - add buttons to view, edit & delete this movie
         //   - on each button, you can add an `onclick` attribute that calls the relevant method on `Movies.controller`
         html += `
-          <li> 
+          <li>
             <a href="#" onclick="Movie.controller.show('${movies[i]._id}')">${movies[i].title}</a>
             <button onclick="Movie.controller.edit('${movies[i]._id}')" type="button">Edit Movie</button>
             <button onclick="Movie.controller.destroy('${movies[i]._id}')">Delete Movie</button>
@@ -166,6 +177,29 @@ var Movie = {
       `;
     },
 
+    show: function(movie) {
+      var html = `
+          <h2>Show Movie</h2>
+
+          <p><strong>Title:</strong> ${movie.title}</p>
+          <p><strong>Genre</strong> ${movie.genre}</p>
+          <p><strong>Release:</strong> ${movie.releaseYear}</p>
+
+          <p><strong>Reviews:</strong></p>
+          <ul>
+        `;
+
+      for (var i = 0; i < movie.reviews.length; i++) {
+        html += `
+            <li>
+              <em>${movie.reviews[i].name}<em>
+              ${movie.reviews[i].content}<br>
+               ${movie.reviews[i].rating}
+            </li>
+          `;
+      }
+      return html;
+    },
 //--------------------------------------------------------------------------------
     new: function () {
       var newHtml =  `
@@ -195,8 +229,13 @@ var Movie = {
 
       return newHtml;
     }
-    //------------------------------------------------------------------------
   },
+
+
+
+
+    //================================MODEL=================================//
+
 
   // the following object contains model-related methods
   // ie AJAX calls to implement the relevant RESTful methods:
