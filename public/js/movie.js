@@ -33,8 +33,17 @@ var Movie = {
     edit: function () {
       // TODO: implement
     },
-    destroy: function () {
-      // TODO: implement
+    destroy: function (movieId) {
+      Movie.model.destroy(
+        movieId,
+        function success(data) {
+          console.log(`destroy: movieId: ${movieId}: success: data:`, data);
+          Movie.controller.index();
+        },
+        function error(err) {
+          console.warn(`destroy: movieId: ${movieId}: error: err:`, err);
+        }
+      );
     }
   },
   // the following object contains methods related to generating the View - ie, the HTML:
@@ -52,7 +61,12 @@ var Movie = {
         // For example:
         //   - add buttons to view, edit & delete this movie
         //   - on each button, you can add an `onclick` attribute that calls the relevant method on `Movies.controller`
-        html += `<li><a href="/movies/${movies[i]._id}">${movies[i].title}</a></li>`;
+        html += `
+          <li>
+            <a href="/movies/${movies[i]._id}">${movies[i].title}</a>
+            <button onclick="Movie.controller.destroy('${movies[i]._id}')">delete</button>
+          </li>
+        `;
       }
       html += `</ul>`;
 
