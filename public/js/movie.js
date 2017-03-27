@@ -30,8 +30,40 @@ var Movie = {
     show: function () {
       // TODO: implement
     },
-    edit: function () {
-      // TODO: implement
+    edit: function (movieId) {
+      var $content = $('#content');
+
+      Movie.model.show(
+        movieId,
+        function success(data) {
+          var showHtml = Movie.view.edit(data);
+
+          // set the HTML in the content div
+          $content.html(showHtml);
+        },
+        function error(err) {
+          $('#error-message').html(err.responseJSON.message);
+        }
+      );
+    },
+    update: function (form) {
+      var updatedMovie = {
+        id: form.movieId.value,
+        title: form.title.value,
+        genre: form.genre.value,
+        releaseYear: form.releaseYear.value
+      };
+
+      Movie.model.update(
+        updatedMovie,
+        function success() {
+          Movie.controller.index();
+        },
+        function error(err) {
+          console.log('ERROR: err:', err);
+          $('#error-message').html(err.responseJSON.message);
+        }
+      );
     },
     destroy: function (movieId) {
       Movie.model.destroy(
@@ -53,7 +85,6 @@ var Movie = {
         <h1>Movies</h1>
         <ul>
       `;
-      console.log(movies);
 
       for(var i = 0; i < movies.length ; i++) {
         // TODO: fill this in properly!
@@ -63,6 +94,7 @@ var Movie = {
         html += `
           <li>
             <a href="/movies/${movies[i]._id}">${movies[i].title}</a>
+            <button onclick="Movie.controller.edit('${movies[i]._id}')" type="button">edit</button>
             <button onclick="Movie.controller.destroy('${movies[i]._id}')">delete</button>
           </li>
         `;
@@ -72,8 +104,25 @@ var Movie = {
       return html;
     },
     // generate the HTML to edit an existing Movies
-    edit: function () {
-      // TODO: implement
+    edit: function (movie) {
+      return `
+        <h1>Edit movie</h1>
+
+        <form name="editMovie">
+          <input type="hidden" name="movieId" value="${movie._id}">
+
+          <label for="title">Title</label>
+          <input id="title" name="title" value="${movie.title}">
+
+          <label for="genre">Genre</label>
+          <input id="genre" name="genre" value="${movie.genre}">
+
+          <label for="releaseYear">Release year</label>
+          <input id="releaseYear" name="releaseYear" value="${movie.releaseYear}">
+
+          <button onclick="Movie.controller.update(editMovie)" type="button">Update</button>
+        </form>
+      `;
     },
 
     new: function () {
