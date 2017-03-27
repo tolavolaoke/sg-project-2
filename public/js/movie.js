@@ -13,23 +13,50 @@ var Movie = {
           $content.html(indexHtml);
         },
         function error() {
-          // TODO: what will you do when an error occurs?
-          // Display a message somewhere?
-          // What parameters are passed to this anonymous function?
-          //   - read the jQuery docs
-          //   - use console.log() to confirm
-          // See: https://api.jquery.com/jQuery.ajax/
+
         }
       );
     },
 
+
+//-------------------------------------------------------------------------
     new: function () {
-      // TODO: implement
+      var $content = $('#content');
+      var newHtml = Movie.view.new();
+
+      $content.html(newHtml);
+
     },
+
+//----------------------------------------------------------------------
+    create: function (form) {
+      var createdMovie = {
+        title: form.title.value,
+        genre: form.genre.value,
+        releaseYear: form.releaseYear.value
+      };
+
+      Movie.model.create(
+        createdMovie,
+        function success() {
+          Movie.controller.index();
+        },
+        function error(err) {
+          console.log('ERROR: err:', err);
+          $('#error-message').html(err.responseJSON.message);
+        }
+      );
+    },
+
+
+//--------------------------------------------------------------------------
 
     show: function () {
       // TODO: implement
     },
+
+
+//---------------------------------------------------------------------------
     edit: function (movieId) {
       var $content = $('#content');
 
@@ -65,6 +92,8 @@ var Movie = {
         }
       );
     },
+
+  //------------------------------------------------------------------------
     destroy: function (movieId) {
       Movie.model.destroy(
         movieId,
@@ -77,6 +106,9 @@ var Movie = {
       );
     }
   },
+
+  //===========================VIEW=======================================//
+
   // the following object contains methods related to generating the View - ie, the HTML:
   view: {
     // this maps directly to the `index` route (remember the 7 RESTful routes?)
@@ -84,7 +116,10 @@ var Movie = {
       var html = `
         <h1>Movies</h1>
         <ul>
+
       `;
+
+      html += `<button onclick="Movie.controller.new()" type="button">Add new</button>`;
 
       for(var i = 0; i < movies.length ; i++) {
         // TODO: fill this in properly!
@@ -101,6 +136,8 @@ var Movie = {
       }
       html += `</ul>`;
 
+
+
       return html;
     },
     // generate the HTML to edit an existing Movies
@@ -114,8 +151,14 @@ var Movie = {
           <label for="title">Title</label>
           <input id="title" name="title" value="${movie.title}">
 
+
           <label for="genre">Genre</label>
-          <input id="genre" name="genre" value="${movie.genre}">
+          <select name="genre" id=genre value="${movie.genre}">
+            <option value="action">Action</option>
+            <option value="comedy">Comedy</option>
+            <option value="thriller">Thriller</option>
+            <option value="romance">Romance</option>
+          </select>
 
           <label for="releaseYear">Release year</label>
           <input id="releaseYear" name="releaseYear" value="${movie.releaseYear}">
@@ -125,9 +168,36 @@ var Movie = {
       `;
     },
 
+//--------------------------------------------------------------------------------
     new: function () {
-      // TODO: implement
+      var newHtml =  `
+      <h1>Add movie</h1>
+
+      <form name="editMovie">
+        <input type="hidden" name="movieId">
+
+        <label for="title">Title</label>
+        <input id="title" name="title">
+
+
+        <label for="genre">Genre</label>
+        <select name="genre" id=genre>>
+          <option value="action">Action</option>
+          <option value="comedy">Comedy</option>
+          <option value="thriller">Thriller</option>
+          <option value="romance">Romance</option>
+        </select>
+
+        <label for="releaseYear">Release year</label>
+        <input id="releaseYear" name="releaseYear">
+
+        <button onclick="Movie.controller.update(editMovie)" type="button">Update</button>
+      </form>
+    `;
+
+      return newHtml;
     }
+    //------------------------------------------------------------------------
   },
 
   // the following object contains model-related methods

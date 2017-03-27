@@ -2,13 +2,11 @@ var Movie = require('../models/movie-model');
 
 require('../models/review-model');
 
-// Action: index
+//=========================== Action: index===================================//
 function indexMovies(req, res) {
   Movie.find({}, function (err, movies) {
     if (err) {
       console.log('Could not get list of movies:', err.message);
-      // A little bit lazy, but not going to implement
-      // anything more complex at this point in time:
       res.status(500).json({ message: 'Could not get list of movies' });
       return;
     }
@@ -16,7 +14,33 @@ function indexMovies(req, res) {
   });
 }
 
-// Action: update
+//========================Action: Create =====================================//
+//
+// function createMovie(req, res) {
+//   var newMovie = new Movie();
+//
+//   newMovie.title = req.body.title;
+//   newMovie.genre = req.body.genre;
+//   newMovie.releaseYear = req.body.releaseYear;
+//
+//   newMovie.save(function (err) {
+//     var errorJson = [];
+//
+//     if (err) {
+//       for (var path in err.errors) {
+//         errorJson.push({
+//           path: path,
+//           message: err.errors[path].message
+//         });
+//         console.log('Could not create new movie: error:', err.errors[path].message);
+//       }
+//       res.status(400).json(errorJson);
+//       return;
+//     }
+//   });
+// }
+
+// =========================Action: update==================================//
 function updateMovie(req, res) {
   var movieId = req.params.id;
   var updatedMovie = {
@@ -36,7 +60,7 @@ function updateMovie(req, res) {
   });
 }
 
-// Action: show
+// ==========================Action: show==================================//
 function showMovie(req, res) {
   var movieId = req.params.id;
 
@@ -53,7 +77,7 @@ function showMovie(req, res) {
   );
 }
 
-// Action: destroy
+//======================== Action: destroy==================================//
 function destroyMovie(req, res) {
   var movieId = req.params.id;
 
@@ -67,9 +91,12 @@ function destroyMovie(req, res) {
   });
 }
 
+//============================EXPORT========================================//
+
 module.exports = {
   index: indexMovies,
   update: updateMovie,
   show: showMovie,
   destroy: destroyMovie
+  // create: createMovie
 };
