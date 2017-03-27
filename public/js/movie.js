@@ -1,4 +1,4 @@
-// define a globally-available object, which stores all functions related to a Game
+// define a globally-available object, which stores all functions related to a Movies
 // Note: this is a singleton, so we are following the convention of giving a singleton an init capital letter.
 var Movie = {
   controller: {
@@ -7,9 +7,10 @@ var Movie = {
 
       Movie.model.index(
         function success(data) {
-          var html = Movie.view.index(data);
+          var indexHtml = Movie.view.index(data);
 
-          $content.html(html); // set the HTML in the content div
+          // set the HTML in the content div
+          $content.html(indexHtml);
         },
         function error() {
           // TODO: what will you do when an error occurs?
@@ -21,10 +22,33 @@ var Movie = {
         }
       );
     },
-    show: function () {
-      // TODO: implement
-    },
+
     new: function () {
+      // TODO: implement
+      var $content = $('#content');
+
+      Movie.model.new(
+        function success() {
+          var newHtml = Movie.view.new();
+          $content.html(newHtml);
+          var $backToIndex = $('#backToIndex');
+          $backToIndex.click(function(){
+            Movie.controller.index();
+          });
+        },
+        function error() {
+          // TODO: what will you do when an error occurs?
+          // Display a message somewhere?
+          // What parameters are passed to this anonymous function?
+          //   - read the jQuery docs
+          //   - use console.log() to confirm
+          // See: https://api.jquery.com/jQuery.ajax/
+        }
+      );
+
+    },
+
+    show: function () {
       // TODO: implement
     },
     edit: function () {
@@ -39,35 +63,32 @@ var Movie = {
     // this maps directly to the `index` route (remember the 7 RESTful routes?)
     index: function (movies) {
       var html = `
-        <h2>Movies</h2>
+        <h1>Movies</h1>
         <ul>
       `;
+      console.log(movies);
 
       for(var i = 0; i < movies.length ; i++) {
         // TODO: fill this in properly!
         // For example:
-        //   - add buttons to view, edit & delete this game
-        //   - on each button, you can add an `onclick` attribute that calls the relevant method on `Game.controller`
-        html += `<li>${movies[i].title}</li>`;
+        //   - add buttons to view, edit & delete this movie
+        //   - on each button, you can add an `onclick` attribute that calls the relevant method on `Movies.controller`
+        html += `<li><a href="/movies/${movies[i]._id}">${movies[i].title}</a></li>`;
       }
-
       html += `</ul>`;
 
       return html;
     },
-    // generate the HTML to show an existing Game
-    show: function () {
-      // TODO: implement
-    },
-    // generate the HTML to create a new Game
-    new: function () {
-      // TODO: implement
-    },
-    // generate the HTML to edit an existing Game
+    // generate the HTML to edit an existing Movies
     edit: function () {
+      // TODO: implement
+    },
+
+    new: function () {
       // TODO: implement
     }
   },
+
   // the following object contains model-related methods
   // ie AJAX calls to implement the relevant RESTful methods:
   model: {
@@ -79,6 +100,15 @@ var Movie = {
         method: 'GET',
         dataType: 'json',
         url: '/movies',
+        success: success,
+        error: error
+      });
+    },
+    new: function (success, error) {
+      $.ajax({
+        method: 'GET',
+        dataType: 'json',
+        url: '/movies/new',
         success: success,
         error: error
       });
