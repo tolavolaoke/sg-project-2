@@ -36,12 +36,11 @@ var Movie = {
     destroy: function (movieId) {
       Movie.model.destroy(
         movieId,
-        function success(data) {
-          console.log(`destroy: movieId: ${movieId}: success: data:`, data);
+        function success() {
           Movie.controller.index();
         },
         function error(err) {
-          console.warn(`destroy: movieId: ${movieId}: error: err:`, err);
+          $('#error-message').html(err.responseJSON.message);
         }
       );
     }
