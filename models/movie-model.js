@@ -9,11 +9,11 @@ var validationRules = {
     type: String,
     required: true
   },
-  releaseYear: {
-    type: String,
-    required: true
-  },
   image: {
+    type: String,
+    required: false
+  },
+  releaseYear: {
     type: String,
     required: true
   },

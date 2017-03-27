@@ -9,7 +9,7 @@ var request;
 chai.should();
 chai.use(chaiHttp);
 
-describe('Movies', function () {
+describe('Games', function () {
   beforeEach(function () {
     request = chai.request(server);
   });
@@ -23,9 +23,9 @@ describe('Movies', function () {
           done();
         });
     });
-    it('should list all games for GET /movies', function (done) {
+    it('should list all games for GET /games', function (done) {
       request
-        .get('/movies')
+        .get('/games')
         .end(function (err, res) {
           expect(err).to.be.null;
           res.should.have.status(200);
