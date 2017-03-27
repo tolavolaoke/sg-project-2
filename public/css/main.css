@@ -1,7 +1,12 @@
 * {
   font-family: Helvetica, sans-serif;
+
 }
 
 .error {
   color: red;
+}
+
+li{
+  list-style: none;
 }

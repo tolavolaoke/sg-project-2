@@ -127,16 +127,14 @@ var Movie = {
         //   - add buttons to view, edit & delete this movie
         //   - on each button, you can add an `onclick` attribute that calls the relevant method on `Movies.controller`
         html += `
-          <li>
-            <a href="/movies/${movies[i]._id}">${movies[i].title}</a>
-            <button onclick="Movie.controller.edit('${movies[i]._id}')" type="button">edit</button>
-            <button onclick="Movie.controller.destroy('${movies[i]._id}')">delete</button>
+          <li> 
+            <a href="#" onclick="Movie.controller.show('${movies[i]._id}')">${movies[i].title}</a>
+            <button onclick="Movie.controller.edit('${movies[i]._id}')" type="button">Edit Movie</button>
+            <button onclick="Movie.controller.destroy('${movies[i]._id}')">Delete Movie</button>
           </li>
         `;
       }
       html += `</ul>`;
-
-
 
       return html;
     },
@@ -173,7 +171,7 @@ var Movie = {
       var newHtml =  `
       <h1>Add movie</h1>
 
-      <form name="editMovie">
+      <form name="newMovie">
         <input type="hidden" name="movieId">
 
         <label for="title">Title</label>
@@ -191,7 +189,7 @@ var Movie = {
         <label for="releaseYear">Release year</label>
         <input id="releaseYear" name="releaseYear">
 
-        <button onclick="Movie.controller.update(editMovie)" type="button">Update</button>
+        <button onclick="Movie.controller.create(newMovie)" type="button">Create</button>
       </form>
     `;
 

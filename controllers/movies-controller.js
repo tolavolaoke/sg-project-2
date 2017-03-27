@@ -15,30 +15,23 @@ function indexMovies(req, res) {
 }
 
 //========================Action: Create =====================================//
-//
-// function createMovie(req, res) {
-//   var newMovie = new Movie();
-//
-//   newMovie.title = req.body.title;
-//   newMovie.genre = req.body.genre;
-//   newMovie.releaseYear = req.body.releaseYear;
-//
-//   newMovie.save(function (err) {
-//     var errorJson = [];
-//
-//     if (err) {
-//       for (var path in err.errors) {
-//         errorJson.push({
-//           path: path,
-//           message: err.errors[path].message
-//         });
-//         console.log('Could not create new movie: error:', err.errors[path].message);
-//       }
-//       res.status(400).json(errorJson);
-//       return;
-//     }
-//   });
-// }
+
+function createMovie(req, res) {
+  var newMovie = new Movie();
+
+  newMovie.title = req.body.title;
+  newMovie.genre = req.body.genre;
+  newMovie.releaseYear = req.body.releaseYear;
+
+  newMovie.save(function (err) {
+
+    if (err) {
+      res.status(400).json({message: 'Could not add Movie'});
+      return;
+    }
+    res.json({message: 'Movie successfully created'});
+  });
+}
 
 // =========================Action: update==================================//
 function updateMovie(req, res) {
@@ -97,6 +90,6 @@ module.exports = {
   index: indexMovies,
   update: updateMovie,
   show: showMovie,
-  destroy: destroyMovie
-  // create: createMovie
+  destroy: destroyMovie,
+  create: createMovie
 };
