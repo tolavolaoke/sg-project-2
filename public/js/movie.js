@@ -25,27 +25,6 @@ var Movie = {
 
     new: function () {
       // TODO: implement
-      var $content = $('#content');
-
-      Movie.model.new(
-        function success() {
-          var newHtml = Movie.view.new();
-          $content.html(newHtml);
-          var $backToIndex = $('#backToIndex');
-          $backToIndex.click(function(){
-            Movie.controller.index();
-          });
-        },
-        function error() {
-          // TODO: what will you do when an error occurs?
-          // Display a message somewhere?
-          // What parameters are passed to this anonymous function?
-          //   - read the jQuery docs
-          //   - use console.log() to confirm
-          // See: https://api.jquery.com/jQuery.ajax/
-        }
-      );
-
     },
 
     show: function () {
