@@ -9,7 +9,7 @@ var validationRules = {
     type: String,
     required: true
   },
-  image: {
+  imageHref: {
     type: String,
     required: false
   },

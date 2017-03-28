@@ -9,6 +9,7 @@ function seedData() {
 
   movie.title = 'Get out';
   movie.genre = 'Thriller';
+  movie.imageHref = 'https://i.ytimg.com/vi/sRfnevzM9kQ/maxresdefault.jpg';
   movie.releaseYear = '1987';
   movie.save(function (err, movieSaved) {
     var review1 = new Review();

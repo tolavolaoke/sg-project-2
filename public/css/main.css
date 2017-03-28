@@ -7,6 +7,9 @@
   color: red;
 }
 
-li{
-  list-style: none;
+.movieThumbnail {
+  width: 250px;
+  height:200px;
+  display: block;
+  margin: 10px
 }

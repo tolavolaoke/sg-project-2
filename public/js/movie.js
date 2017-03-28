@@ -1,7 +1,11 @@
 // define a globally-available object, which stores all functions related to a Movies
 // Note: this is a singleton, so we are following the convention of giving a singleton an init capital letter.
 var Movie = {
+
+ //=============================CONTROLLER================================//
   controller: {
+
+//------------------------------------------------------------------------
     index: function () {
       var $content = $('#content');
 
@@ -17,7 +21,6 @@ var Movie = {
         }
       );
     },
-
 
 //-------------------------------------------------------------------------
     new: function () {
@@ -47,7 +50,6 @@ var Movie = {
         }
       );
     },
-
 
 //--------------------------------------------------------------------------
 
@@ -84,6 +86,8 @@ var Movie = {
         }
       );
     },
+
+//----------------------------------------------------------------------------
     update: function (form) {
       var updatedMovie = {
         id: form.movieId.value,
@@ -119,37 +123,30 @@ var Movie = {
   },
 
   //===========================VIEW=======================================//
-
-  // the following object contains methods related to generating the View - ie, the HTML:
+// this maps directly to the `index` route (remember the 7 RESTful routes?)
   view: {
-    // this maps directly to the `index` route (remember the 7 RESTful routes?)
+//VIEW
     index: function (movies) {
       var html = `
         <h1>Movies</h1>
-        <ul>
-
-      `;
+        <ol>`;
 
       html += `<button onclick="Movie.controller.new()" type="button">Add new</button>`;
-
       for(var i = 0; i < movies.length ; i++) {
-        // TODO: fill this in properly!
-        // For example:
-        //   - add buttons to view, edit & delete this movie
-        //   - on each button, you can add an `onclick` attribute that calls the relevant method on `Movies.controller`
         html += `
           <li>
-            <a href="#" onclick="Movie.controller.show('${movies[i]._id}')">${movies[i].title}</a>
+            <a href="#" onclick="Movie.controller.show('${movies[i]._id}')">${movies[i].title}<br><img class="movieThumbnail" src="${movies[i].imageHref}"></a>
             <button onclick="Movie.controller.edit('${movies[i]._id}')" type="button">Edit Movie</button>
             <button onclick="Movie.controller.destroy('${movies[i]._id}')">Delete Movie</button>
           </li>
         `;
       }
-      html += `</ul>`;
+      html += `</ol>`;
 
       return html;
     },
-    // generate the HTML to edit an existing Movies
+
+//EDIT
     edit: function (movie) {
       return `
         <h1>Edit movie</h1>
@@ -177,10 +174,12 @@ var Movie = {
       `;
     },
 
+//SHOW
     show: function(movie) {
       var html = `
           <h2>Show Movie</h2>
 
+          <img class="movieThumbnail" src="${movie.imageHref}">
           <p><strong>Title:</strong> ${movie.title}</p>
           <p><strong>Genre</strong> ${movie.genre}</p>
           <p><strong>Release:</strong> ${movie.releaseYear}</p>
@@ -200,7 +199,8 @@ var Movie = {
       }
       return html;
     },
-//--------------------------------------------------------------------------------
+
+//NEW
     new: function () {
       var newHtml =  `
       <h1>Add movie</h1>
@@ -230,8 +230,6 @@ var Movie = {
       return newHtml;
     }
   },
-
-
 
 
     //================================MODEL=================================//
