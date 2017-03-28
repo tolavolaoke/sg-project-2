@@ -200,8 +200,41 @@ var Movie = {
             </li>
           `;
       }
+
+
+      html += `  <h1>Add Review</h1>
+
+        <form name="newReview">
+          <input type="hidden" name="movieId" value="${movie._id}">
+
+          <label for="name">Name</label>
+          <input id="name" name="name">
+
+          <label for="content">Content</label>
+          <input id="content" name="content">
+
+          <label for="rating">Rating</label>
+          <select id=rating name="rating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+
+          <button onclick="Review.controller.create(newReview)" type="button">Create</button>
+        </form>`;
+
       return html;
     },
+
+
+
+
+
+
+
+
 
 //NEW
     new: function () {
