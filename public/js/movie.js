@@ -130,9 +130,9 @@ var Movie = {
 //VIEW
     index: function (movies) {
       var html = `
-        <h1>Movies</h1>
+        <h1 class="movieTitle">Movies</h1>
         <button id="" onclick="Movie.controller.new()" type="button">Add new</button>
-        <ul>`;
+        <ul class="movieBox">`;
 
 
       for(var i = 0; i < movies.length ; i++) {
@@ -153,8 +153,9 @@ var Movie = {
 //EDIT
     edit: function (movie) {
       return `
-        <h1>Edit movie</h1>
+
         <button id="back" onclick="Movie.controller.index()" type="button">Back</button>
+        <h2>Edit movie</h2>
 
         <form name="editMovie">
           <input type="hidden" name="movieId" value="${movie._id}">
@@ -184,30 +185,29 @@ var Movie = {
 //SHOW
     show: function(movie) {
       var html = `
-          <h2>Show Movie</h2>
           <button id="back" onclick="Movie.controller.index()" type="button">Back</button>
 
-          <p><strong>Title:</strong> ${movie.title}</p>
+
           <img class="movieThumbnail" src="${movie.imageHref}">
+          <p><strong>Title:</strong> ${movie.title}</p>
           <p><strong>Genre:</strong> ${movie.genre}</p>
           <p><strong>Release:</strong> ${movie.releaseYear}</p>
 
-          <p><strong>Reviews:</strong></p>
-          <ul>
+          <p><strong><u>Reviews</u></strong></p>
+          <ul class="reviewList">
         `;
 
       for (var i = 0; i < movie.reviews.length; i++) {
         html += `
-            <li>
-              <em>${movie.reviews[i].name}<em>
-              ${movie.reviews[i].comment}<br>
-               ${movie.reviews[i].rating}
+            <li class="review">
+            <span class="span">${movie.reviews[i].name}</span><span class="span">${movie.reviews[i].rating}/5</span> <br>
+              ${movie.reviews[i].comment}
             </li>
           `;
       }
 
 
-      html += `  <h1>Add Review</h1>
+      html += `  <h2>Add Review</h2>
 
         <form name="addReview">
           <input type="hidden" name="movieId" value="${movie._id}">
@@ -238,7 +238,7 @@ var Movie = {
 //NEW
     new: function () {
       var newHtml =  `
-      <h1>Add movie</h1>
+      <h2>Add movie</h2>
         <button id="back" onclick="Movie.controller.index()" type="button">Back</button>
 
       <form name="newMovie">

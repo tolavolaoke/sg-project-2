@@ -23,6 +23,42 @@ function seedData() {
       genre: 'Action',
       imageHref: 'http://www.cavsconnect.com/wp-content/uploads/2016/11/Central-Intelligence-Movie-Review.jpg',
       releaseYear: '2016'
+    },
+    {
+      title: 'Avengers',
+      genre: 'Action',
+      imageHref: 'https://i.ytimg.com/vi/48fKIXlxaXk/maxresdefault.jpg',
+      releaseYear: '2016'
+    },
+    {
+      title: 'Passengers',
+      genre: 'romance',
+      imageHref: 'http://www.cbsays.com/wp-content/uploads/2017/01/passengers_banner.jpg',
+      releaseYear: '2016'
+    },
+    {
+      title: 'King Kong',
+      genre: 'Action',
+      imageHref: 'https://i.ytimg.com/vi/ZuYUf66Bpi0/maxresdefault.jpg',
+      releaseYear: '2017'
+    },
+    {
+      title: 'Batman The Dark Knight',
+      genre: 'Action',
+      imageHref: 'http://screencrush.com/files/2012/07/1920_action_bat.jpg',
+      releaseYear: '2008'
+    },
+    {
+      title: 'The Martian',
+      genre: 'Comedy',
+      imageHref: 'http://thegeekypress.com/wp-content/uploads/2016/10/martian-9.jpg',
+      releaseYear: '2016'
+    },
+    {
+      title: 'Captain Phillips',
+      genre: 'Action',
+      imageHref: 'https://amonymousblog.files.wordpress.com/2013/08/richards.jpg',
+      releaseYear: '2013'
     }
   ];
 
@@ -37,9 +73,9 @@ function seedData() {
 
     //REVIEWS
 
-    review1.name = 'hotstuffz';
-    review1.comment = 'Not bad';
-    review1.rating = '3';
+    review1.name = 'Hotstuffz';
+    review1.comment = 'Blending race-savvy satire with horror to especially potent effect, this bombshell social critique from first-time director Jordan Peele proves positively fearless';
+    review1.rating = '4';
     review1.save(function (err, review1Saved) {
       var review2 = new Review();
 
@@ -49,9 +85,9 @@ function seedData() {
       }
       console.log('review1 saved:', review1Saved);
 
-      review2.name = 'catperson';
-      review2.comment = 'Putting out fire';
-      review2.rating = '2';
+      review2.name = 'Catperson';
+      review2.comment = 'Funny, scary, and thought-provoking, Get Out seamlessly weaves its trenchant social critiques into a brilliantly effective and entertaining horror/comedy thrill ride.';
+      review2.rating = '5';
       review2.save(function (err, review2Saved) {
         if (err) {
           console.log('could not create review2: err:', err);
