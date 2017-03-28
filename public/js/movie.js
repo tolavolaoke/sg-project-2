@@ -150,6 +150,7 @@ var Movie = {
     edit: function (movie) {
       return `
         <h1>Edit movie</h1>
+        <button id="back" onclick="Movie.controller.index()" type="button">Back</button>
 
         <form name="editMovie">
           <input type="hidden" name="movieId" value="${movie._id}">
@@ -181,6 +182,7 @@ var Movie = {
     show: function(movie) {
       var html = `
           <h2>Show Movie</h2>
+          <button id="back" onclick="Movie.controller.index()" type="button">Back</button>s
 
           <p><strong>Title:</strong> ${movie.title}</p>
           <img class="movieThumbnail" src="${movie.imageHref}">
@@ -204,7 +206,7 @@ var Movie = {
 
       html += `  <h1>Add Review</h1>
 
-        <form name="newReview">
+        <form name="addReview">
           <input type="hidden" name="movieId" value="${movie._id}">
 
           <label for="name">Name</label>
@@ -222,7 +224,7 @@ var Movie = {
             <option value="5">5</option>
           </select>
 
-          <button onclick="Review.controller.create(newReview)" type="button">Create</button>
+          <button onclick="Review.controller.create(addReview)" type="button">Create</button>
         </form>`;
 
       return html;
@@ -230,16 +232,11 @@ var Movie = {
 
 
 
-
-
-
-
-
-
 //NEW
     new: function () {
       var newHtml =  `
       <h1>Add movie</h1>
+        <button id="back" onclick="Movie.controller.index()" type="button">Back</button>
 
       <form name="newMovie">
         <input type="hidden" name="movieId">

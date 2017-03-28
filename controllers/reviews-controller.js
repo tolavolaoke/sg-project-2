@@ -23,7 +23,7 @@ function createReview(req, res) {
       if(err){
         console.log('Could not find movie');
       }
-      movie.review.push(savedReview._id);
+      movie.reviews.push(savedReview._id);
 
       movie.save(function (err) {
         if(err){

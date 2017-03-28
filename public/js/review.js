@@ -36,34 +36,3 @@
       }
     }
   };
-//     //--------------------------------------------------------------------------
-//
-//     show: function (movieId) {
-//       Movie.model.show(
-//       movieId,
-//       function success(data) {
-//         var showHtml = Movie.view.show(data);
-//
-//         $('#content').html(showHtml);
-//       },
-//       function error(err) {
-//         $('#error-message').html(err.responseJSON.message);
-//       }
-//     );
-//     },
-//
-// //============================================================================//
-//
-//     model: {
-//       create: function (data, success, error) {
-//         $.ajax({
-//           method: 'POST',
-//           dataType: 'json',
-//           url: '/reviews',
-//           data: data,
-//           success: success,
-//           error: error
-//         });
-//       }
-//     }
-//   };
