@@ -5,20 +5,35 @@ var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/sg-webdev4-pro
 
 function seedData() {
 //MOVIE
-  var movie = new Movie();
+  var movies = [
+    {
+      title: 'Get out',
+      genre: 'Thriller',
+      imageHref: 'https://i.ytimg.com/vi/sRfnevzM9kQ/maxresdefault.jpg',
+      releaseYear: '1987'
+    },
+    {
+      title: 'Shutter Island',
+      genre: 'Action',
+      imageHref: 'https://moviesandmadness.files.wordpress.com/2012/01/shutter_island_wallpaper_1600x1200_03.jpg',
+      releaseYear: '2010'
+    },
+    {
+      title: 'Central Intelligence',
+      genre: 'Action',
+      imageHref: 'http://www.cavsconnect.com/wp-content/uploads/2016/11/Central-Intelligence-Movie-Review.jpg',
+      releaseYear: '2016'
+    }
+  ];
 
-  movie.title = 'Get out';
-  movie.genre = 'Thriller';
-  movie.imageHref = 'https://i.ytimg.com/vi/sRfnevzM9kQ/maxresdefault.jpg';
-  movie.releaseYear = '1987';
-  movie.save(function (err, movieSaved) {
+  Movie.create(movies, function (err, moviesSaved) {
     var review1 = new Review();
 
     if (err) {
-      console.log('COULD not create movieSaved: err:', err);
+      console.log('COULD not create movies: err:', err);
       process.exit(1);
     }
-    console.log('movie saved:', movieSaved);
+    console.log('movies saved:', moviesSaved);
 
     //REVIEWS
 
@@ -44,9 +59,9 @@ function seedData() {
         }
         console.log('review2 saved:', review2Saved);
 
-        movieSaved.reviews.push(review1._id);
-        movieSaved.reviews.push(review2._id);
-        movieSaved.save(function (err, movieWithReviewsSaved) {
+        moviesSaved[0].reviews.push(review1._id);
+        moviesSaved[0].reviews.push(review2._id);
+        moviesSaved[0].save(function (err, movieWithReviewsSaved) {
           if (err) {
             console.log('could not save movie with reviews: err:', err);
             process.exit(1);
