@@ -131,17 +131,17 @@ var Movie = {
     index: function (movies) {
       var html = `
         <h1>Movies</h1>
-        <button onclick="Movie.controller.new()" type="button">Add new</button>
+        <button id="" onclick="Movie.controller.new()" type="button">Add new</button>
         <ul>`;
 
-      
+
       for(var i = 0; i < movies.length ; i++) {
         html += `
           <li>
-            <a href="#" onclick="Movie.controller.show('${movies[i]._id}')">${movies[i].title}<br><img class="movieThumbnail" src="${movies[i].imageHref}"></a>
+            <a href="#" class="title" onclick="Movie.controller.show('${movies[i]._id}')">${movies[i].title}<br><img class="movieThumbnail" src="${movies[i].imageHref}"></a>
             <br>
-            <button onclick="Movie.controller.edit('${movies[i]._id}')" type="button">Edit Movie</button>
-            <button onclick="Movie.controller.destroy('${movies[i]._id}')">Delete Movie</button>
+            <button id="button1" onclick="Movie.controller.edit('${movies[i]._id}')" type="button">Edit</button>
+            <button id="button2" onclick="Movie.controller.destroy('${movies[i]._id}')" type="button">Delete</button>
           </li>
         `;
       }
@@ -170,7 +170,7 @@ var Movie = {
             <option value="romance">Romance</option>
           </select>
 
-          <label for="title">Image</label>
+          <label for="image">Image</label>
           <input id="image" name="imageHref" value="${movie.imageHref}">
 
           <label for="releaseYear">Release year</label>
