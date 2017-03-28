@@ -11,7 +11,7 @@ var validationRules = {
   },
   imageHref: {
     type: String,
-    required: false
+    required: true
   },
   releaseYear: {
     type: String,

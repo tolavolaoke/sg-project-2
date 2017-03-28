@@ -23,7 +23,7 @@ function seedData() {
     //REVIEWS
 
     review1.name = 'hotstuffz';
-    review1.content = 'Not bad';
+    review1.comment = 'Not bad';
     review1.rating = '3';
     review1.save(function (err, review1Saved) {
       var review2 = new Review();
@@ -35,7 +35,7 @@ function seedData() {
       console.log('review1 saved:', review1Saved);
 
       review2.name = 'catperson';
-      review2.content = 'Putting out fire';
+      review2.comment = 'Putting out fire';
       review2.rating = '2';
       review2.save(function (err, review2Saved) {
         if (err) {

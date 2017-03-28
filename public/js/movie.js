@@ -36,6 +36,7 @@ var Movie = {
       var createdMovie = {
         title: form.title.value,
         genre: form.genre.value,
+        imageHref: form.imageHref.value,
         releaseYear: form.releaseYear.value
       };
 
@@ -93,6 +94,7 @@ var Movie = {
         id: form.movieId.value,
         title: form.title.value,
         genre: form.genre.value,
+        imageHref: form.imageHref.value,
         releaseYear: form.releaseYear.value
       };
 
@@ -129,19 +131,21 @@ var Movie = {
     index: function (movies) {
       var html = `
         <h1>Movies</h1>
-        <ol>`;
+        <button onclick="Movie.controller.new()" type="button">Add new</button>
+        <ul>`;
 
-      html += `<button onclick="Movie.controller.new()" type="button">Add new</button>`;
+      
       for(var i = 0; i < movies.length ; i++) {
         html += `
           <li>
             <a href="#" onclick="Movie.controller.show('${movies[i]._id}')">${movies[i].title}<br><img class="movieThumbnail" src="${movies[i].imageHref}"></a>
+            <br>
             <button onclick="Movie.controller.edit('${movies[i]._id}')" type="button">Edit Movie</button>
             <button onclick="Movie.controller.destroy('${movies[i]._id}')">Delete Movie</button>
           </li>
         `;
       }
-      html += `</ol>`;
+      html += `</ul>`;
 
       return html;
     },
@@ -158,7 +162,6 @@ var Movie = {
           <label for="title">Title</label>
           <input id="title" name="title" value="${movie.title}">
 
-
           <label for="genre">Genre</label>
           <select name="genre" id=genre value="${movie.genre}">
             <option value="action">Action</option>
@@ -168,7 +171,7 @@ var Movie = {
           </select>
 
           <label for="title">Image</label>
-          <input id="image" name="image">
+          <input id="image" name="imageHref" value="${movie.imageHref}">
 
           <label for="releaseYear">Release year</label>
           <input id="releaseYear" name="releaseYear" value="${movie.releaseYear}">
@@ -182,11 +185,11 @@ var Movie = {
     show: function(movie) {
       var html = `
           <h2>Show Movie</h2>
-          <button id="back" onclick="Movie.controller.index()" type="button">Back</button>s
+          <button id="back" onclick="Movie.controller.index()" type="button">Back</button>
 
           <p><strong>Title:</strong> ${movie.title}</p>
           <img class="movieThumbnail" src="${movie.imageHref}">
-          <p><strong>Genre</strong> ${movie.genre}</p>
+          <p><strong>Genre:</strong> ${movie.genre}</p>
           <p><strong>Release:</strong> ${movie.releaseYear}</p>
 
           <p><strong>Reviews:</strong></p>
@@ -197,7 +200,7 @@ var Movie = {
         html += `
             <li>
               <em>${movie.reviews[i].name}<em>
-              ${movie.reviews[i].content}<br>
+              ${movie.reviews[i].comment}<br>
                ${movie.reviews[i].rating}
             </li>
           `;
@@ -212,8 +215,8 @@ var Movie = {
           <label for="name">Name</label>
           <input id="name" name="name">
 
-          <label for="content">Content</label>
-          <input id="content" name="content">
+          <label for="comment">Comment</label>
+          <input id="comment" name="commentt">
 
           <label for="rating">Rating</label>
           <select id=rating name="rating">
@@ -254,8 +257,8 @@ var Movie = {
         </select>
 
 
-        <label for="title">Image</label>
-        <input id="image" name="image">
+        <label for="imageHref">Image</label>
+        <input id="imageHref" name="imageHref">
 
         <label for="releaseYear">Release year</label>
         <input id="releaseYear" name="releaseYear">

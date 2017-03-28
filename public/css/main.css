@@ -1,18 +1,34 @@
 * {
   font-family: Helvetica, sans-serif;
 
+
 }
 
-.error {
+/*.error {
   color: red;
+}*/
+
+#content {
+  margin: 0px 80px;
 }
 
 .movieThumbnail {
   width: 250px;
   height:200px;
-  display: block;
-  margin: 10px
+  margin: 10px;
+  outline: grey 1px solid;
 }
+
+ul {
+    border: 1px lightgrey solid;
+}
+
+ul li {
+  display: inline-block;;
+  padding: 10px;
+}
+
+
 
 /*#content {
   width: 100px;

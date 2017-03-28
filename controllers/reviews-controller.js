@@ -11,7 +11,7 @@ function createReview(req, res) {
   var movieId = req.body.movieId;
 
   newReview.name = req.body.name;
-  newReview.content = req.body.content;
+  newReview.comment = req.body.comment;
   newReview.rating = req.body.rating;
 
   newReview.save(function (err, savedReview) {

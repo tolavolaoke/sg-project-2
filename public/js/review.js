@@ -5,7 +5,7 @@
       create: function (form) {
         var newReview = {
           name: form.name.value,
-          content: form.content.value,
+          comment: form.comment.value,
           rating: form.rating.value,
           movieId: form.movieId.value
         };

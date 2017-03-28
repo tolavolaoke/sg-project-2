@@ -5,7 +5,7 @@ var validationRules = {
     type: String,
     required: true
   },
-  content: {
+  comment: {
     type: String,
     required: true
   },
