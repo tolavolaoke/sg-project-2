@@ -166,6 +166,9 @@ var Movie = {
             <option value="romance">Romance</option>
           </select>
 
+          <label for="title">Image</label>
+          <input id="image" name="image">
+
           <label for="releaseYear">Release year</label>
           <input id="releaseYear" name="releaseYear" value="${movie.releaseYear}">
 
@@ -179,8 +182,8 @@ var Movie = {
       var html = `
           <h2>Show Movie</h2>
 
-          <img class="movieThumbnail" src="${movie.imageHref}">
           <p><strong>Title:</strong> ${movie.title}</p>
+          <img class="movieThumbnail" src="${movie.imageHref}">
           <p><strong>Genre</strong> ${movie.genre}</p>
           <p><strong>Release:</strong> ${movie.releaseYear}</p>
 
@@ -219,6 +222,10 @@ var Movie = {
           <option value="thriller">Thriller</option>
           <option value="romance">Romance</option>
         </select>
+
+
+        <label for="title">Image</label>
+        <input id="image" name="image">
 
         <label for="releaseYear">Release year</label>
         <input id="releaseYear" name="releaseYear">

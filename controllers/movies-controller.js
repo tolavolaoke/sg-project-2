@@ -21,6 +21,7 @@ function createMovie(req, res) {
 
   newMovie.title = req.body.title;
   newMovie.genre = req.body.genre;
+  newMovie.imageHref = req.body.imageHref;
   newMovie.releaseYear = req.body.releaseYear;
 
   newMovie.save(function (err) {
@@ -39,6 +40,7 @@ function updateMovie(req, res) {
   var updatedMovie = {
     title: req.body.title,
     genre: req.body.genre,
+    imageHref: req.body.imageHref,
     releaseYear: req.body.releaseYear
   };
 
