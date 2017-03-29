@@ -13,11 +13,49 @@ text-align: center;
   margin: 0px 100px
 }
 
-h1 {
+/* ====== Animated Title each page ===================*/
+@keyframes party {
+  0% {
+   text-shadow: 2px 2px #bc519e,
+    3px 3px #bc519e,
+    5px 5px #89c4f4,
+    6px 6px #89c4f4;
+  }
+  33% {
+   text-shadow: 2px 2px #FFD700,
+    3px 3px #FFD700,
+    5px 5px #bc519e,
+    6px 6px #bc519e;
+  }
+  66% {
+   text-shadow: 2px 2px #89c4f4,
+    3px 3px #89c4f4,
+    5px 5px #FFD700,
+    6px 6px #FFD700;
+  }
+}
+  #content h1 {
+      color: red;
+      font-family: 'Roboto', sans-serif;
+      font-size: 5em;
+      margin: 0 auto;
+      text-shadow: 2px 2px orange,
+        3px 3px yellow,
+        5px 5px white,
+        6px 6px red;
+    }
+
+  #content h1:hover{
+      animation-name: party;
+      animation-duration: 0.5s;
+      animation-iteration-count: infinite;
+    }
+
+/*h1 {
   text-shadow: 2px 2px red;
   font-size: 45px;
   margin-bottom: 5px;
-}
+}*/
 .movieThumbnail {
   width: 350px;
   height:230px;
@@ -39,10 +77,10 @@ h1 {
     padding-right: 30px;
 }
 
-h2 {
+/*h2 {
   text-align: center;
   margin-top: 50px;
-}
+}*/
 
 
 ul li {
@@ -144,4 +182,9 @@ text-align: center;
 
 #image {
   width: 200px;
+}
+
+#error-message {
+  color: red;
+  margin-top: 30px;
 }

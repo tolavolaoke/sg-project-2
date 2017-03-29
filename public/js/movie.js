@@ -1,5 +1,5 @@
 // define a globally-available object, which stores all functions related to a Movies
-// Note: this is a singleton, so we are following the convention of giving a singleton an init capital letter.
+//Front end
 var Movie = {
 
  //=============================CONTROLLER================================//
@@ -16,12 +16,14 @@ var Movie = {
           // set the HTML in the content div
           $content.html(indexHtml);
         },
-        function error() {
-
+        function error(err) {
+          console.log('ERROR: err:', err);
+          $('#error-message').html(err.responseJSON.message);
         }
       );
     },
 
+//
 //-------------------------------------------------------------------------
     new: function () {
       var $content = $('#content');
@@ -68,8 +70,6 @@ var Movie = {
     );
     },
 
-
-
 //---------------------------------------------------------------------------
     edit: function (movieId) {
       var $content = $('#content');
@@ -78,8 +78,6 @@ var Movie = {
         movieId,
         function success(data) {
           var showHtml = Movie.view.edit(data);
-
-          // set the HTML in the content div
           $content.html(showHtml);
         },
         function error(err) {
@@ -274,15 +272,9 @@ var Movie = {
   },
 
 
-    //================================MODEL=================================//
+    //================================ MODEL =================================//
 
-
-  // the following object contains model-related methods
-  // ie AJAX calls to implement the relevant RESTful methods:
   model: {
-    // this maps to the `index` route
-    // see jQuery docs for `success` and `error` callbacks:
-    //  https://api.jquery.com/jQuery.ajax/
     index: function (success, error) {
       $.ajax({
         method: 'GET',
@@ -292,15 +284,7 @@ var Movie = {
         error: error
       });
     },
-    new: function (success, error) {
-      $.ajax({
-        method: 'GET',
-        dataType: 'json',
-        url: '/movies/new',
-        success: success,
-        error: error
-      });
-    },
+
     show: function (id, success, error) {
       $.ajax({
         method: 'GET',

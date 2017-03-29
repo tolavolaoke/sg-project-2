@@ -27,7 +27,7 @@ function createMovie(req, res) {
   newMovie.save(function (err) {
 
     if (err) {
-      res.status(400).json({message: 'Could not add Movie'});
+      res.status(400).json({message: 'Sorry, we could not add your movie. Ensure all fields are completed'});
       return;
     }
     res.json({message: 'Movie successfully created'});
