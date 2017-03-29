@@ -1,3 +1,4 @@
+@import "compass/css3";
 * {
   font-family: 'Ubuntu', sans-serif;
   background-color: black;
@@ -12,11 +13,11 @@ text-align: center;
   margin: 0px 100px
 }
 
-.movieTitle {
-  text-align: center;
+h1 {
+  text-shadow: 2px 2px red;
+  font-size: 45px;
+  margin-bottom: 5px;
 }
-
-
 .movieThumbnail {
   width: 350px;
   height:230px;
@@ -28,7 +29,7 @@ text-align: center;
   color: white;
   text-decoration: none;
   padding-left: 8px;
-  text-shadow: 1px 1px #a9a9a9;;
+  text-shadow: 1px 1px #a9a9a9;
 }
 
 .movieBox {
@@ -40,7 +41,7 @@ text-align: center;
 
 h2 {
   text-align: center;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 
@@ -49,7 +50,7 @@ ul li {
   padding-top: 10px;
 }
 
-button { /*Add new button*/
+button {
     background-color: #4CAF50 ;
     border-color: #3C8C40;
     border-radius: 4px;
@@ -60,9 +61,9 @@ button { /*Add new button*/
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
-    -webkit-transition-duration: 0.4s; /* Safari */
+    /*-webkit-transition-duration: 0.4s; /* Safari
     transition-duration: 0.4s;
-    cursor: pointer;
+    cursor: pointer;*/
 }
 
 #button1 {
@@ -82,7 +83,7 @@ button { /*Add new button*/
 #button2 {
     background-color: #f44336;
     color: white;
-    border: 2px solid #DB3C30;
+    border: 2px solid #db3c30;
     font-size: 12px;
 }
 
@@ -123,10 +124,24 @@ text-align: center;
   display: block;
 }
 
+
 #back {
   display: block;
 }
 
 .span {
   margin-left: 20px;
+}
+
+#comment {
+  width: 270px;
+  height: 40px;
+}
+
+#releaseYear {
+  width: 60px;
+}
+
+#image {
+  width: 200px;
 }

@@ -130,7 +130,8 @@ var Movie = {
 //VIEW
     index: function (movies) {
       var html = `
-        <h1 class="movieTitle">Movies</h1>
+      <h1>Movies</h1>
+
         <button id="" onclick="Movie.controller.new()" type="button">Add new</button>
         <ul class="movieBox">`;
 
@@ -216,7 +217,7 @@ var Movie = {
           <input id="name" name="name">
 
           <label for="comment">Comment</label>
-          <input id="comment" name="commentt">
+          <input id="comment" name="comment">
 
           <label for="rating">Rating</label>
           <select id=rating name="rating">
@@ -238,8 +239,9 @@ var Movie = {
 //NEW
     new: function () {
       var newHtml =  `
-      <h2>Add movie</h2>
+
         <button id="back" onclick="Movie.controller.index()" type="button">Back</button>
+        <h2>Add movie</h2>
 
       <form name="newMovie">
         <input type="hidden" name="movieId">
