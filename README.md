@@ -1,7 +1,7 @@
 # Sparta Global Webdev4 Project 2: Movies and Reviews
 
 ## Synopsis
-This project uses a rMVC approach and utilises HTTP requests. It allows the creation of new users and also updates the database so the user can add their favourite movies.
+This project uses a rMVC approach and utilises HTTP requests. It allows the creation of new movies and reviews and also updates the database so the user can add, delete, edit their favourite movies and only create reviews.
 
 
 ## Motivation
@@ -13,13 +13,13 @@ This project was undertaken to solidify understand of HTTP methods and how this 
 To use this app:
 * Clone the [repository](https://github.com/tolaoke/sg-project-2.git)
 * In the command line `npm install` (this will install all the necessary dependancies stored in the `package.json` file)
-* To use locally you will need to run the seed file (pre-created data for users and movies) with this command in the terminal `npm run seed`.
+* To use locally you will need to run the seed file (pre-created data for movies and reviews) with this command in the terminal `npm run seed`.
 * In order to spin up the server the following command must be inputted to the terminal `npm run nodemon`.
 
 ## Functions
-* In order to create a user enter a first name, last name and email in the New User form, and press create.
-* The app allows the user to edit and delete their details
-* The user can also add their favourite movies
+* In order to create a movie enter a title, genre, image link from google, select the genre and release year date in the New movie form, and press create. Similar to this to create a review enter the name, comment and rating.
+* The app allows the user to edit and delete their movies
+
 
 ##Technologies Used
 * The server is running with [`node.js`](https://nodejs.org/en/)
