@@ -1,3 +1,8 @@
+//Holds raw data
+//defines the main components of the Movie properties and the objects
+
+
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var validationRules = {

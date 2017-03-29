@@ -1,3 +1,6 @@
+//Controller ties together the model and the view
+//receives user input and decides what to do with it
+
 var Movie = require('../models/movie-model');
 
 require('../models/review-model');
@@ -63,7 +66,6 @@ function showMovie(req, res) {
     function (err, movie) {
       if (err) {
         console.log('Could not get movie:', err.message);
-        // ditto comment above re. keeping complexity to a minimum:
         res.status(404).json({ message: 'Could not get movie' });
         return;
       }
