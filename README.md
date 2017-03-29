@@ -30,6 +30,9 @@ To use this app:
 * Animations are controlled via CSS
 * The apps behaviours (eg click events) are handle via [`jQuery`](https://jquery.com/) and installed via [`bower`](https://bower.io/)
 
+## Deployment
+* Deployed on heroku https://movierevs.herokuapp.com/
+
 ## Contributors
 
 [Asma Chaima](https://github.com/achaima)
